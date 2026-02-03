@@ -6,7 +6,7 @@ CFLAGS = -Wall -Wextra -g -O2
 LDFLAGS =
 
 # Targets
-TARGETS = echo_server echo_client
+TARGETS = echo_server echo_client getaddrinfo_demo
 
 all: $(TARGETS)
 
@@ -14,6 +14,9 @@ echo_server: echo_server.c
 	$(CC) $(CFLAGS) -o $@ $< $(LDFLAGS)
 
 echo_client: echo_client.c
+	$(CC) $(CFLAGS) -o $@ $< $(LDFLAGS)
+
+getaddrinfo_demo: getaddrinfo_demo.c
 	$(CC) $(CFLAGS) -o $@ $< $(LDFLAGS)
 
 clean:

@@ -6,13 +6,19 @@ A comprehensive, chapter-wise guide to understanding and building network proxie
 
 ```
 c-lbs-1/
-├── chapter-01-fundamentals/     # Socket programming basics
-├── chapter-02-simple-proxy/     # Forward & Reverse proxy
-├── chapter-03-load-balancer/    # Multi-backend load balancing
+├── chapter-01-fundamentals/      # Socket programming basics
+├── chapter-02-simple-proxy/      # Forward & Reverse proxy
+├── chapter-03-load-balancer/     # Multi-backend load balancing
 ├── chapter-04-advanced-features/ # Health checks, algorithms
-├── common/                      # Shared utilities
-├── backends/                    # Test backend servers
-└── tests/                       # Test scripts
+├── chapter-05-high-perf-io/      # epoll/kqueue event loop
+├── chapter-06-connection-pooling/ # Pingora-style backend reuse
+├── chapter-07-rate-limiting/     # Token bucket, sliding window
+├── chapter-08-metrics/           # Prometheus-compatible metrics
+├── chapter-09-zero-copy/         # sendfile/splice optimization
+├── chapter-10-hot-reload/        # Zero-downtime config reload
+├── common/                       # Shared utilities
+├── backends/                     # Test backend servers
+└── tests/                        # Test scripts
 ```
 
 ## Key Concepts: LB vs RP vs FP
@@ -157,6 +163,12 @@ Layer 3 (Network)      ─── IP Load Balancer (packet-aware)
 | **02** | Simple Proxy | Forward proxy, then reverse proxy |
 | **03** | Load Balancer | Round-robin across 3 backends |
 | **04** | Advanced | Health checks, weighted routing, connection pooling |
+| **05** | High-Performance I/O | Cross-platform epoll/kqueue event loop |
+| **06** | Connection Pooling | Pingora-style 99%+ backend connection reuse |
+| **07** | Rate Limiting | Token bucket & sliding window algorithms |
+| **08** | Metrics & Prometheus | Counters, gauges, histograms, /metrics endpoint |
+| **09** | Zero-Copy I/O | sendfile/splice for high throughput |
+| **10** | Hot Reload | JSON config, SO_REUSEPORT, connection draining |
 
 ---
 
@@ -187,6 +199,24 @@ cd chapter-03-load-balancer && make && ./load_balancer 8080
 
 # Chapter 4: Advanced LB
 cd chapter-04-advanced-features && make && ./advanced_lb 8080
+
+# Chapter 5: High-performance event-driven LB
+cd chapter-05-high-perf-io && make && ./high_perf_lb 8080
+
+# Chapter 6: Connection pooling LB
+cd chapter-06-connection-pooling && make && ./pooled_lb 8080
+
+# Chapter 7: Rate limiting (library - integrate with other chapters)
+cd chapter-07-rate-limiting && make
+
+# Chapter 8: Metrics (library - integrate with other chapters)
+cd chapter-08-metrics && make
+
+# Chapter 9: Zero-copy I/O (library - integrate with other chapters)
+cd chapter-09-zero-copy && make
+
+# Chapter 10: Hot reload with JSON config
+cd chapter-10-hot-reload && make && ./hot_reload_lb lb.json
 ```
 
 ## References
